@@ -12,6 +12,9 @@ BucketSort::BucketSort() {
 }
 
 void BucketSort::add(const float item){
+    if (std::floor(100) == 100) {// if element is 100.*
+        buckets[buckets.size() - 1].emplace_back(item);
+    }
     buckets[std::floor(item)].emplace_back(item);
 }
 
