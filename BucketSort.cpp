@@ -12,10 +12,30 @@ BucketSort::BucketSort() {
 }
 
 void BucketSort::add(const float item){
+    int index;
     if (std::floor(item) == 100) {// if element is 100.*
-        buckets[buckets.size() - 1].emplace_back(item);
+        index = buckets.size() - 1;
     }
-    buckets[std::floor(item)].emplace_back(item);
+    else {
+        index = std::floor(item);
+    }
+    int l = 0, h = buckets[index].size(), indexToPlace = 0, oldI = -1;
+    while (l != h) {
+        if (oldI == indexToPlace) {
+            break;
+        }
+        oldI = indexToPlace;
+        if (buckets[index][(l + h) / 2] > item) {
+            indexToPlace = h = (l + h) / 2;
+        } else if (buckets[index][(l + h) / 2] < item) {
+            indexToPlace = l = (l + h) / 2;
+        } else {
+            indexToPlace = (l + h) / 2;
+            break;
+        }
+    }
+    buckets[index].insert(buckets[index].begin() + indexToPlace, item);
+
 }
 
 void BucketSort::output() const {
