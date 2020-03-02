@@ -28,7 +28,7 @@ void BucketSort::add(const float item){
         if (buckets[index][(l + h) / 2] > item) {
             indexToPlace = h = (l + h) / 2;
         } else if (buckets[index][(l + h) / 2] < item) {
-            indexToPlace = l = (l + h) / 2;
+            indexToPlace = l = (l + h) / 2 + 1;
         } else {
             indexToPlace = (l + h) / 2;
             break;
